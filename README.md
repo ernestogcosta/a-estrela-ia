@@ -1,0 +1,3 @@
+#Algoritmo de A*
+
+Um algoritmo utilizando A* para se traçar caminhos da porta da frente de uma casa inteligente até o comodo no qual um alarme de emergência foi disparado. Na fase inicial, não são utilizados sensores de fato, utilizando-se assim um menu com as opções de cada recinto, assim, quando se escolhe um recinto, o código é tratado como se um sensor tivesse sido disparado naquele cômodo, assim traçando o melhor caminho até ele.
