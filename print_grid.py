@@ -1,4 +1,5 @@
 import collections
+from colorama import *
 
 # A função desenhar recebe a planta na qual a busca está sendo feita
 # recebe o id do grafo, um "style", que funciona como a forma como se
@@ -43,9 +44,26 @@ def desenhar(planta, id, style, largura):
 # explicado anteriormente, a matriz é invertida, depois o x, percorrendo até as dimensões máximas da matriz,
 # e a cada iteração se chama a função desenhar para printar da forma escolhida.
 def mostrar_grid(planta, largura=2, **style):
+    colorama.init()
     for y in range(planta.altura):
         for x in range(planta.largura):
-            print("%%-%ds" % largura % desenhar(planta, (x, y), style, largura), end="")
+            a = desenhar(planta, (x, y), style, largura)
+            if a == '@':
+               print(Fore.CYAN + "%%-%ds" % largura % a, end="" + Style.RESET_ALL)
+            elif a == '#' * largura:
+                print(Fore.GREEN + "%%-%ds" % largura % a, end="" + Style.RESET_ALL)
+            elif a == 'A' or a == 'Z':
+                print(Fore.RED + "%%-%ds" % largura % a, end="" + Style.RESET_ALL)
+            elif a == '>' or a == '<' or a == '^' or a == 'v':
+                print(Fore.YELLOW + "%%-%ds" % largura % a, end="" + Style.RESET_ALL)
+            elif a == '.':
+                print(Fore.WHITE + "%%-%ds" % largura % a, end="" + Style.RESET_ALL)
+            elif a.isnumeric:
+                print(Fore.MAGENTA + "%%-%ds" % largura % a, end="" + Style.RESET_ALL)
+            else:
+                print("%%-%ds" % largura % a, end="")
+            #print("%%-%ds" % largura % desenhar(planta, (x, y), style, largura), end="")
+                                  
         print()
 
 # Serve para retraçar o melhor caminho encontrado, ele recebe como parâmetros a lista
@@ -58,5 +76,4 @@ def reconstruir_caminho(veio_de, inicio, final):
         caminho.append(atual)   # adiciono na minha lista do caminho a posição atual
         atual = veio_de[atual]  # a posição atual passa a ser recebe a posição seguinte da lista veio_de 
     caminho.append(inicio)      # caso seja o início, eu saio do while, adiciono inicio ao meu caminho
-#    caminho.reverse() #estético
     return caminho              # devolvo então o meu caminho para ser printado  
