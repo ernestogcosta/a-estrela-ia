@@ -24,10 +24,10 @@ def desenhar(planta, id, style, largura):
     if 'caminho' in style and id in style['caminho']:   # Mesmo esquema, porém com o melhor caminho encontrado
         r = "@"                                         # só será printado o caminho, diferente das outras oções
 
-    if 'start' in style and id == style['start']:       # Marca a posição inicial com um A
+    if 'inicio' in style and id == style['inicio']:       # Marca a posição inicial com um A
         r = "A"
 
-    if 'goal' in style and id == style['goal']:         # Marca a posição final com um Z
+    if 'final' in style and id == style['final']:         # Marca a posição final com um Z
         r = "Z"
 
     if id in planta.paredes:                            # Marca as paredes com #

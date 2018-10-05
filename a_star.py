@@ -33,7 +33,7 @@ def a_star(planta, inicio, final):
             break
         
         for next in planta.vizinhos(atual):                                 # Para cada possibilidade dentro dos vizinhos adjacentes da minha posição atual
-            new_cost = custo_total[atual] + planta.custo(atual, next)       # Eu calculo um novo custo, que é o custo total até agora + o custo para esse vizinho
+            new_cost = custo_total[atual] + planta.custo(next, final)       # Eu calculo um novo custo, que é o custo total até agora + o custo para esse vizinho
             if next not in custo_total or new_cost < custo_total[next]:     # Se o proximo vizinho não está no custo total ou o novo custo  for menor que o custo para o próximo vizinho
                 custo_total[next] = new_cost                                # O custo total vira o novo custo
                 prioridade = new_cost + heuristic(final, next)              # Meu F (prioridade) vira o novo custo mais a função heuristica (distancia do vizinho até o destino)
